@@ -1,0 +1,112 @@
+PROJECT NAME:
+BMSCE Events Portal
+
+PROJECT TYPE:
+Web Application
+
+DESCRIPTION:
+A centralized web portal for discovering college clubs, events, hackathons and cultural activities at BMSCE.
+
+TECHNOLOGIES:
+HTML
+CSS
+JavaScript
+Python
+JSON
+
+MY CONTRIBUTION:
+Frontend Development
+UI Implementation
+Event Interface
+Search and Sorting Interface
+Event Details Interface
+
+PROBLEM:
+College event information can be scattered across different club announcements and communication channels, making it difficult for students to keep track of upcoming activities.
+
+The project was designed to provide a centralized platform where students can discover college events and access important event information in one place.
+
+SOLUTION:
+The BMSCE Events Portal organizes college activities into different sections such as Clubs, Hackathons and Utsav.
+
+Students can browse clubs, search and sort events, view event cards, open detailed event information and access registration links.
+
+KEY FEATURES:
+• Centralized event discovery
+• Club-based event browsing
+• Event cards
+• Event details
+• Search functionality
+• Event sorting
+• Registration links
+• Hackathon section
+• Cultural event section
+• Structured event data
+• Python-based event data processing
+
+USER FLOW:
+Open Portal
+↓
+Choose an Event Category
+↓
+Select a Club
+↓
+Browse Events
+↓
+Search / Sort Events
+↓
+Open Event Details
+↓
+View Information / Register
+
+MY FRONTEND WORK:
+• Designed and implemented the user interface
+• Built the navigation structure
+• Created the club browsing interface
+• Implemented event cards
+• Implemented event detail views
+• Worked on search and sorting interactions
+• Structured the presentation of event information
+• Worked on making the interface easy to navigate
+
+DATA FLOW:
+Event Information
+↓
+Python Processing
+↓
+Structured JSON
+↓
+Frontend
+↓
+Event Cards and Details
+
+CHALLENGES:
+• Presenting a large amount of event information in an organized interface
+• Designing clear navigation between different event categories
+• Creating readable event cards containing multiple pieces of information
+• Connecting different interface sections into a consistent user flow
+• Working with structured event data
+
+WHAT I LEARNED:
+• Frontend web development
+• HTML and CSS interface design
+• JavaScript-based interactions
+• Designing information-heavy interfaces
+• Creating reusable visual patterns such as event cards
+• Search and sorting interactions
+• Working with structured JSON data
+• Thinking about navigation and information hierarchy
+• Building interfaces around a real-world user problem
+
+FUTURE IMPROVEMENTS:
+• Admin login for clubs
+• Direct event posting by clubs
+• Database integration
+• Email or SMS notifications
+• Advanced search and filtering
+
+GITHUB:
+[ADD LINK LATER]
+
+LIVE DEMO:
+[ADD LINK LATER]

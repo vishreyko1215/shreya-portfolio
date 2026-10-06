@@ -1,0 +1,87 @@
+PROJECT NAME:
+DinePoint
+
+PROJECT TYPE:
+Mobile Application
+
+DESCRIPTION:
+A restaurant discovery app that helps groups find convenient places to meet.
+
+TECHNOLOGIES:
+Flutter
+Dart
+OpenStreetMap
+Nominatim
+JSON
+SharedPreferences
+
+MY CONTRIBUTION:
+Frontend Development
+UI Implementation
+Map Integration
+Midpoint Feature
+
+PROBLEM:
+Finding a restaurant is relatively easy when everyone is in the same area, but choosing a convenient meeting point becomes difficult when people are coming from different parts of the city.
+
+DinePoint was designed to address this problem by helping groups find restaurants around a common geographical midpoint.
+
+SOLUTION:
+DinePoint allows users to explore restaurants, filter them based on different preferences, save favourites, view restaurant details and find restaurants near a calculated midpoint.
+
+Users can select locations for the people in their group, calculate a midpoint and then explore suggested restaurants around that location.
+
+KEY FEATURES:
+• Restaurant discovery
+• Search and filtering
+• Cuisine, rating, price, ambience and area filters
+• Restaurant details
+• Favourite restaurants
+• Map visualisation
+• Midpoint calculation
+• Restaurants near the calculated midpoint
+• Google Maps navigation
+• Sharing midpoint restaurant recommendations
+
+MAIN FEATURE:
+Midpoint-based restaurant discovery.
+
+DinePoint calculates a geographical midpoint between selected locations and uses that point to identify nearby restaurant options.
+
+CHALLENGES:
+• Implementing location and map functionality
+• Working with geographical coordinates
+• Connecting the midpoint calculation with restaurant recommendations
+• Creating a smooth flow between multiple application screens
+• Managing user favourites and application state
+
+WHAT I LEARNED:
+• Building interfaces with Flutter
+• Structuring a multi-screen mobile application
+• Working with maps and location-based features
+• Understanding geographical coordinates
+• Implementing a midpoint-based user flow
+• Designing search and filtering interactions
+• Working with structured restaurant data
+• Testing application functionality
+
+TESTING:
+The application was tested across its major functional modules, including app launch, restaurant discovery, search, filtering, favourites, navigation, maps and midpoint functionality.
+
+25 manual black-box test cases were documented, with all documented test cases passing.
+
+FUTURE IMPROVEMENTS:
+• Live GPS-based location
+• Cloud database
+• User authentication
+• AI-powered restaurant recommendations
+• Real-time restaurant availability
+• In-app table booking
+• Push notifications
+• Accessibility and multilingual support
+
+GITHUB:
+[ADD LINK LATER]
+
+LIVE DEMO:
+[ADD LINK LATER]
