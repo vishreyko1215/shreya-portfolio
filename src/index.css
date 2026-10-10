@@ -1,0 +1,14 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #F7F6F2;
+    color: #171717;
+    font-family: Inter, Arial, sans-serif;
+}
