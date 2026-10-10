@@ -8,7 +8,7 @@ const { Pool } = require("pg");
 const rateLimit = require("express-rate-limit");
 
 const app = express();
-const PORT = 5000;
+
 
 const pool = new Pool({
   host: process.env.DB_HOST,
@@ -16,22 +16,26 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  ssl: {
+ ssl: {
   rejectUnauthorized: true,
   ca: fs.readFileSync(
-    path.join(__dirname, "supabase-ca.crt"),
+    process.env.NODE_ENV === "production"
+      ? "/etc/secrets/supabase-ca.crt"
+      : path.join(__dirname, "supabase-ca.crt"),
     "utf8"
   ),
 },
 });
 
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })
 );
+
 
 app.use(express.json());
 const contactLimiter = rateLimit({
@@ -111,8 +115,10 @@ if (
   }
 });
 
+const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
 
 process.on("SIGINT", async () => {
