@@ -1,46 +1,21 @@
-
+import CaseStudyHero from "./CaseStudyHero";
 function BMSCECaseStudy() {
   return (
     <main className="case-study">
       
       {/* Hero */}
-      <section className="case-study-hero bmsce-hero">
-        <p className="section-label">
-          WEB · PRODUCT · UI DESIGN
-        </p>
+      
+<CaseStudyHero
+  category="WEB · PRODUCT · UI DESIGN"
+  title="BMSCE Events Portal"
+  intro="A centralized platform that brings college events and club activities together, helping students discover what's happening on campus."
+  role="Frontend Development & UI"
+  technology="HTML · CSS · JavaScript"
+  year="2026"
+  image="/assets/hero-events.png"
+  imageAlt="BMSCE Events Portal homepage interface"
+/>
 
-        <h1>BMSCE Events Portal</h1>
-
-        <p className="case-study-intro">
-          A centralized platform that brings college events and
-          club activities together, helping students discover
-          what's happening on campus.
-        </p>
-
-        <div className="case-study-meta">
-          <div>
-            <p className="section-label">ROLE</p>
-            <p>Frontend Development & UI</p>
-          </div>
-
-          <div>
-            <p className="section-label">PROJECT TYPE</p>
-            <p>College Project</p>
-          </div>
-
-          <div>
-            <p className="section-label">TECHNOLOGIES</p>
-            <p>HTML · CSS · JavaScript</p>
-          </div>
-        </div>
-
-        <div className="case-study-hero-image bmsce-hero-image">
-          <img
-            src="/assets/hero-events.png"
-            alt="BMSCE Events Portal homepage interface"
-          />
-        </div>
-      </section>
 
 
       

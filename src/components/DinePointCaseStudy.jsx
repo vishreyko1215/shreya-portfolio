@@ -1,44 +1,17 @@
-
+import CaseStudyHero from "./CaseStudyHero";
 function DinePointCaseStudy() {
   return (
     <main className="case-study">
-      <section className="case-study-hero">
-        <p className="section-label">
-          MOBILE · PRODUCT · FLUTTER
-        </p>
-
-        <h1>DinePoint</h1>
-
-        <p className="case-study-intro">
-          Finding a convenient place to eat when
-          everyone's coming from different places.
-        </p>
-
-        <div className="case-study-meta">
-          <div>
-            <span>ROLE</span>
-            <strong>Frontend · UI Implementation</strong>
-          </div>
-
-          <div>
-            <span>TECHNOLOGY</span>
-            <strong>Flutter · Dart · OpenStreetMap</strong>
-          </div>
-
-          <div>
-            <span>YEAR</span>
-            <strong>2026</strong>
-          </div>
-        </div>
-
-        <div className="case-study-image">
-          <img
-            src="/assets/hero-midpoint.png"
-            alt="DinePoint midpoint feature interface"
-          />
-        </div>
-        
-      </section>
+      <CaseStudyHero
+  category="MOBILE · PRODUCT · FLUTTER"
+  title="DinePoint"
+  intro="Finding a convenient place to eat when everyone's coming from different places."
+  role="Frontend · UI Implementation"
+  technology="Flutter · Dart · OpenStreetMap"
+  year="2026"
+  image="/assets/hero-midpoint.png"
+  imageAlt="DinePoint midpoint feature interface"
+/>
 
       
       {/* Overview */}
