@@ -46,23 +46,25 @@ function Navbar() {
 
 
 
-      <div className="nav-links">
-        <a href="/#work" onClick={handleSectionClick("work")}>
-          WORK
-        </a>
+      
+<div className="nav-links">
+  <a href="/#work" onClick={handleSectionClick("work")}>
+    WORK
+  </a>
 
-        <a href="/#about" onClick={handleSectionClick("about")}>
-          ABOUT
-        </a>
+  <a href="/#about" onClick={handleSectionClick("about")}>
+    ABOUT
+  </a>
 
-        <a href="/#contact" onClick={handleSectionClick("contact")}>
-          CONTACT
-        </a>
+  <a href="/#resume" onClick={handleSectionClick("resume")}>
+    RESUME
+  </a>
 
-        <a href="/#resume" onClick={handleSectionClick("resume")}>
-          RESUME
-        </a>
-      </div>
+  <a href="/#contact" onClick={handleSectionClick("contact")}>
+    CONTACT
+  </a>
+</div>
+
     </nav>
   )
 }
