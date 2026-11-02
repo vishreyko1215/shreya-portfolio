@@ -1,17 +1,13 @@
-function ProjectCard({ number, title, description, tags, image, caseStudyLink, githubLink }) {
+
+function ProjectCard({ number, title, description, tags = [], image, caseStudyLink, githubLink }) {
   return (
     <div className="project-card">
-
       <div className="project-info">
-        <div className="project-number">
-          {number}
-        </div>
+        <div className="project-number">{number}</div>
 
         <h2>{title}</h2>
 
-        <p className="project-description">
-          {description}
-        </p>
+        <p className="project-description">{description}</p>
 
         <div className="project-tags">
           {tags.map((tag) => (
@@ -23,20 +19,21 @@ function ProjectCard({ number, title, description, tags, image, caseStudyLink, g
           View case study →
         </a>
 
-        <a
-          href={githubLink}
-          className="project-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View GitHub →
-        </a>
+        {githubLink && (
+          <a
+            href={githubLink}
+            className="project-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View GitHub →
+          </a>
+        )}
       </div>
 
       <div className="project-image">
-        <img src={image} alt={title} />
+        {image && <img src={image} alt={title} />}
       </div>
-
     </div>
   )
 }

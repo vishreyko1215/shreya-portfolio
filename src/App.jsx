@@ -1,8 +1,9 @@
-
-
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminLogin from "./pages/AdminLogin"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import { useEffect } from "react"
 
+import UpdatePassword from "./pages/UpdatePassword";
 
 
 import "./App.css"
@@ -16,7 +17,7 @@ import Contact from "./components/Contact"
 import Resume from "./components/Resume"
 import DinePointCaseStudy from "./components/DinePointCaseStudy"
 import BMSCECaseStudy from "./components/BMSCECaseStudy"
-
+import DynamicCaseStudy from "./components/DynamicCaseStudy";
 
 function HomePage() {
   const location = useLocation()
@@ -72,11 +73,15 @@ function BMSCEPage() {
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/dinepoint" element={<DinePointPage />} />
-        <Route path="/bmsce" element={<BMSCEPage />} />
-      </Routes>
+     <Routes>
+  <Route path="/" element={<HomePage />} />
+  <Route path="/dinepoint" element={<DinePointPage />} />
+  <Route path="/bmsce" element={<BMSCEPage />} />
+  <Route path="/project/:projectId" element={<DynamicCaseStudy />} />
+  <Route path="/admin" element={<AdminLogin />} />
+  <Route path="/update-password" element={<UpdatePassword />} />
+  <Route path="/admin/dashboard" element={<AdminDashboard />} />
+</Routes>
     </BrowserRouter>
   )
 }

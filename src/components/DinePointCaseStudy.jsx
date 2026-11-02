@@ -1,5 +1,165 @@
+import { useEffect, useState } from "react";
 import CaseStudyHero from "./CaseStudyHero";
+
+function renderCaseStudyBlock(block) {
+  const content = block.content || {};
+
+  switch (block.block_type) {
+    case "text":
+      return (
+        <section key={block.id}>
+          <h2>{content.title}</h2>
+          <p>{content.description}</p>
+        </section>
+      );
+
+    case "image":
+      return (
+        <section key={block.id}>
+          <img src={content.imageUrl} alt={content.title || "Project image"} />
+        </section>
+      );
+
+    case "gallery":
+      return (
+        <section key={block.id}>
+          <h2>{content.title}</h2>
+          <div>
+            {(content.imageUrls || []).map((url, index) => (
+              <img key={index} src={url} alt={`Gallery ${index + 1}`} />
+            ))}
+          </div>
+        </section>
+      );
+
+    case "video":
+      return (
+        <section key={block.id}>
+          <video src={content.videoUrl} controls />
+        </section>
+      );
+
+    case "image-text":
+      return (
+        <section key={block.id}>
+          <h2>{content.title}</h2>
+          <p>{content.description}</p>
+          <img src={content.imageUrl} alt={content.title || "Project image"} />
+        </section>
+      );
+
+    case "before-after":
+      return (
+        <section key={block.id}>
+          <div>
+            <img src={content.beforeImageUrl} alt="Before" />
+            <img src={content.afterImageUrl} alt="After" />
+          </div>
+        </section>
+      );
+
+    case "feature-cards":
+      return (
+        <section key={block.id}>
+          <h2>{content.title}</h2>
+          <p>{content.description}</p>
+          <div>
+            {(content.cards || []).map((card, index) => (
+              <div key={index}>
+                <h3>{card.title}</h3>
+                <p>{card.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      );
+
+    case "full-width-banner":
+      return (
+        <section key={block.id}>
+          <img src={content.imageUrl} alt={content.title || "Project banner"} />
+          <h2>{content.title}</h2>
+          <p>{content.description}</p>
+        </section>
+      );
+
+    default:
+      return null;
+  }
+}
+
 function DinePointCaseStudy() {
+  
+  const [sections, setSections] = useState([]);
+  const [sectionsLoading, setSectionsLoading] = useState(true);
+  const [sectionsError, setSectionsError] = useState("");
+  const [blocks, setBlocks] = useState([]);
+const [blocksLoading, setBlocksLoading] = useState(true);
+const [blocksError, setBlocksError] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadSections() {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/projects/2/sections"
+        );
+
+        if (!response.ok) {
+          throw new Error("Unable to load DinePoint sections.");
+        }
+
+        const result = await response.json();
+
+        if (!cancelled) {
+          setSections(result.sections || []);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          setSectionsError(error.message);
+        }
+      } finally {
+        if (!cancelled) {
+          setSectionsLoading(false);
+        }
+      }
+    }
+
+    async function loadBlocks() {
+  try {
+    const response = await fetch(
+      "http://localhost:5000/api/projects/2/blocks"
+    );
+
+    if (!response.ok) {
+      throw new Error("Unable to load DinePoint blocks.");
+    }
+
+    const result = await response.json();
+
+    if (!cancelled) {
+      setBlocks(result.blocks || []);
+    }
+  } catch (error) {
+    if (!cancelled) {
+      setBlocksError(error.message);
+    }
+  } finally {
+    if (!cancelled) {
+      setBlocksLoading(false);
+    }
+  }
+}
+
+    loadSections();
+    loadBlocks();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <main className="case-study">
       <CaseStudyHero
@@ -466,6 +626,123 @@ function DinePointCaseStudy() {
           </div>
         </div>
       </section>
+      
+
+      {/* Dynamic Case Study Sections */}
+      {sections.map((section) => {
+        const layout = section.layout || "text-image";
+        const images = section.image_urls || [];
+
+       
+
+const textContent = (
+  <>
+    {section.label && (
+      <p className="section-label dynamic-section-label">
+        {section.label.toUpperCase()}
+      </p>
+    )}
+
+    {section.title && <h2>{section.title}</h2>}
+
+    {section.body && (
+      <p className="dynamic-section-description">
+        {section.body}
+      </p>
+    )}
+
+    {section.cards?.length > 0 && (
+      <div className="future-grid">
+        {section.cards.map((card, index) => (
+          <div className="future-item" key={index}>
+            <span>{card.number || String(index + 1).padStart(2, "0")}</span>
+            <h3>{card.title}</h3>
+            <p>{card.description}</p>
+          </div>
+        ))}
+      </div>
+    )}
+  </>
+);
+
+
+        const imageContent = images.map((imageUrl, index) => (
+          <img
+            key={`${section.id}-${index}`}
+            src={imageUrl}
+            alt={`${section.title || "DinePoint"} ${index + 1}`}
+            loading="lazy"
+          />
+        ));
+
+        return (
+          <section
+            key={section.id}
+            className={`case-study-section dynamic-section dynamic-${layout}`}
+            data-animation={section.animation || "fade-up"}
+          >
+            {layout === "text" && (
+              <div className="case-study-content">
+                {textContent}
+              </div>
+            )}
+
+            {layout === "text-image" && (
+              <div className="dynamic-section-row">
+                <div className="case-study-content">
+                  {textContent}
+                </div>
+                {images[0] && (
+                  <div className="dynamic-section-images">
+                    {imageContent[0]}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {layout === "image-text" && (
+              <div className="dynamic-section-row dynamic-image-first">
+                {images[0] && (
+                  <div className="dynamic-section-images">
+                    {imageContent[0]}
+                  </div>
+                )}
+                <div className="case-study-content">
+                  {textContent}
+                </div>
+              </div>
+            )}
+
+            {layout === "full-width-image" && (
+              <>
+                {textContent && (
+                  <div className="case-study-content">
+                    {textContent}
+                  </div>
+                )}
+                <div className="dynamic-full-width-image">
+                  {imageContent}
+                </div>
+              </>
+            )}
+
+            {layout === "gallery" && (
+              <>
+                <div className="case-study-content">
+                  {textContent}
+                </div>
+                <div className="dynamic-gallery">
+                  {imageContent}
+                </div>
+              </>
+            )}
+          </section>
+        );
+      })}
+
+            {/* Flexible Content Blocks */}
+      {!blocksLoading && blocks.map((block) => renderCaseStudyBlock(block))}
+
 
       
       {/* Footer */}

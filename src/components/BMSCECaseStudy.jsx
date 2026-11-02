@@ -1,5 +1,74 @@
 import CaseStudyHero from "./CaseStudyHero";
+import { useEffect, useState } from "react";
 function BMSCECaseStudy() {
+    const [sections, setSections] = useState([]);
+  const [sectionsLoading, setSectionsLoading] = useState(true);
+  const [sectionsError, setSectionsError] = useState("");
+  const [blocks, setBlocks] = useState([]);
+const [blocksLoading, setBlocksLoading] = useState(true);
+const [blocksError, setBlocksError] = useState("");
+
+    useEffect(() => {
+    let cancelled = false;
+
+    async function loadSections() {
+      try {
+        const response = await fetch("http://localhost:5000/api/projects/3/sections");
+
+        if (!response.ok) {
+          throw new Error("Unable to load BMSCE sections.");
+        }
+
+        const result = await response.json();
+
+        if (!cancelled) {
+          setSections(result.sections || []);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          setSectionsError(error.message);
+        }
+      } finally {
+        if (!cancelled) {
+          setSectionsLoading(false);
+        }
+      }
+    }
+
+    loadSections();
+    loadBlocks();
+     
+    async function loadBlocks() {
+  try {
+    const response = await fetch(
+      "http://localhost:5000/api/projects/3/blocks"
+    );
+
+    if (!response.ok) {
+      throw new Error("Unable to load BMSCE blocks.");
+    }
+
+    const result = await response.json();
+
+    if (!cancelled) {
+      setBlocks(result.blocks || []);
+    }
+  } catch (error) {
+    if (!cancelled) {
+      setBlocksError(error.message);
+    }
+  } finally {
+    if (!cancelled) {
+      setBlocksLoading(false);
+    }
+  }
+}
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <main className="case-study">
       
@@ -445,6 +514,43 @@ function BMSCECaseStudy() {
           </article>
         </div>
       </section>
+      {sectionsLoading && <p>Loading case-study sections...</p>}
+
+{sectionsError && <p>{sectionsError}</p>}
+
+{sections.map((section) => (
+  <section className="dynamic-section" key={section.id}>
+    <div className="case-study-content">
+      {section.label && (
+        <p className="section-label dynamic-section-label">
+          {section.label.toUpperCase()}
+        </p>
+      )}
+
+      {section.title && <h2>{section.title}</h2>}
+
+      {section.body && (
+        <p className="dynamic-section-description">
+          {section.body}
+        </p>
+      )}
+
+      {section.cards?.length > 0 && (
+        <div className="future-grid">
+          {section.cards.map((card, index) => (
+            <div className="future-item" key={index}>
+              <span>{card.number || String(index + 1).padStart(2, "0")}</span>
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+))}
+
+{!blocksLoading && blocks.map((block) => renderCaseStudyBlock(block))}
 
 
       
